@@ -4,6 +4,9 @@ const responsabilidadDeSubclase = () => {
 
 export default class Numero {
   constructor(valor) {
+    if (this.constructor === Numero) {
+      throw new TypeError('La clase Numero es abstracta, no puede ser construida directamente');
+    }
     this._valor = valor;
   }
   sumar(unSumando) {

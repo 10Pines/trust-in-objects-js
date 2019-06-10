@@ -16,13 +16,17 @@ const cinco = new Entero(5);
 const ocho = new Entero(8);
 
 describe("Numero, al comportarse como abstracto", () => {
-  it("no deja sumar", () => {
-    const debeFallar = () => new Numero().sumar();
+  it("no deja que lo construyan", () => {
+    const debeFallar = () => new Numero();
     expect(debeFallar).toThrow();
   });
-  it("no deja restar", () => {
-    const debeFallar = () => new Numero().restar();
-    expect(debeFallar).toThrow();
+  it("obliga a implementar sus métodos", () => {
+    const debeFallar = () => {
+      const dummy = Object.create(Numero.prototype);
+      dummy.sumar();
+      dummy.restar();
+    };
+    expect(debeFallar).toThrow(/Debe ser implementado por subclase/);
   });
 });
 
