@@ -44,7 +44,7 @@ describe("un Entero", () => {
   });
   describe("al restarse a una Fraccion", () => {
     it("devuelve la resta correcta", () => {
-      expect(cuatroTercios.restar(unTercio).valueOf()).toEqual(uno.valueOf());
+      expect(cuatroTercios.restar(unTercio).equals(uno)).toBe(true);
     });
   });
 });

@@ -1,8 +1,7 @@
 import { Fraction } from 'fractional';
 import Numero from "./numero";
-import Entero from "./entero";
 
-export default class Fraccion extends Numero {
+class Fraccion extends Numero {
   constructor(numerador, denominador) {
     super(new Fraction(numerador, denominador));
   }
@@ -20,32 +19,49 @@ export default class Fraccion extends Numero {
   }
 
   sumar(unSumando) {
-    const valorAFraccion = new Fraction(this.numerador, this.denominador);
-    if (unSumando instanceof Entero) {
-      const fraccionASumar = new Fraction(unSumando._valor, 1);
-      const resultado = valorAFraccion.add(fraccionASumar);
-      return new Fraccion(resultado.numerator, resultado.denominator);
-    } else if (unSumando instanceof Fraccion) {
-      const fraccionASumar = new Fraction(unSumando.numerador, unSumando.denominador);
-      const resultado = valorAFraccion.add(fraccionASumar);
-      return new Fraccion(resultado.numerator, resultado.denominator);
-    } else {
-      throw "Tipo de numero inesperado";
+    try {
+      return unSumando.sumarDesdeFraccion(this);
+    } catch(e) {
+      throw `Tipo de numero inesperado ${e}`;
     }
   }
 
   restar(unSustraendo) {
-    const valorAFraccion = new Fraction(this.numerador, this.denominador);
-    if (unSustraendo instanceof Entero) {
-      const fraccionARestar = new Fraction(unSustraendo._valor, 1);
-      const resultado = valorAFraccion.subtract(fraccionARestar);
-      return new Fraccion(resultado.numerator, resultado.denominator);
-    } else if (unSustraendo instanceof Fraccion) {
-      const fraccionARestar = new Fraction(unSustraendo.numerador, unSustraendo.denominador);
-      const resultado = valorAFraccion.subtract(fraccionARestar);
-      return new Fraccion(resultado.numerator, resultado.denominator);
-    } else {
-      throw "Tipo de numero inesperado";
+    try {
+      return unSustraendo.restarDesdeFraccion(this);
+    } catch(e) {
+      throw `Tipo de numero inesperado ${e}`;
     }
   }
+
+  sumarDesdeEntero(unAdendo) {
+    const enteroEnFraccion = Fraccion.desdeEntero(unAdendo);
+    return this.sumarDesdeFraccion(enteroEnFraccion);
+  }
+
+  restarDesdeEntero(unSustraendo) {
+    const enteroEnFraccion = Fraccion.desdeEntero(unAdendo);
+    return this.restarDesdeFraccion(enteroEnFraccion);
+  }
+
+  sumarDesdeFraccion(unAdendo) {
+    const fraccionASumar = unAdendo.toFractionLib();
+    const resultado = this.toFractionLib().add(fraccionASumar);
+    return Fraccion.desdeFractionLib(resultado);
+  }
+
+  restarDesdeFraccion(unSustraendo) {
+    const fraccionARestar = unSustraendo.toFractionLib();
+    const resultado = fraccionARestar.subtract(this.toFractionLib());
+    return Fraccion.desdeFractionLib(resultado);
+  }
+
+  toFractionLib() {
+    return new Fraction(this.numerador, this.denominador);
+  }
 }
+
+Fraccion.desdeFractionLib = aFraction => new Fraccion(aFraction.numerator, aFraction.denominator);
+Fraccion.desdeEntero = unEntero => new Fraccion(unEntero._valor, 1);
+
+export default Fraccion;

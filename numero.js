@@ -12,7 +12,22 @@ export default class Numero {
   restar(unSustraendo) {
     responsabilidadDeSubclase();
   }
+  sumarDesdeEntero(unAdendo) {
+    responsabilidadDeSubclase();
+  }
+  restarDesdeEntero(unMinuendo) {
+    responsabilidadDeSubclase();
+  }
+  sumarDesdeFraccion(unAdendo) {
+    responsabilidadDeSubclase();
+  }
+  restarDesdeFraccion(unMinuendo) {
+    responsabilidadDeSubclase();
+  }
   valueOf() {
     return this._valor;
+  }
+  equals(otroObjeto) {
+    return this.valueOf() == otroObjeto.valueOf();
   }
 }
