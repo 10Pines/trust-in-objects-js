@@ -1,0 +1,35 @@
+{
+  "name": "trust-in-objects",
+  "version": "1.0.0",
+  "description": "Ejemplos JS del articulo del blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:init": "jest --init"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/10Pines/trust-in-objects-js.git"
+  },
+  "keywords": [
+    "js",
+    "oop",
+    "blog",
+    "10pines"
+  ],
+  "author": "sminutoli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/10Pines/trust-in-objects-js/issues"
+  },
+  "homepage": "https://github.com/10Pines/trust-in-objects-js#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0"
+  },
+  "dependencies": {
+    "fractional": "^1.0.0"
+  }
+}
