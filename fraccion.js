@@ -1,4 +1,4 @@
-import { Fraction } from 'fractional';
+import Fraction from '@mathematics/fraction';
 import Numero from "./numero";
 
 class Fraccion extends Numero {
@@ -7,11 +7,11 @@ class Fraccion extends Numero {
   }
 
   get numerador() {
-    return this._valor.numerator;
+    return this._valor._numerator;
   }
 
   get denominador() {
-    return this._valor.denominator;
+    return this._valor._denominator;
   }
 
   valueOf() {
@@ -61,7 +61,7 @@ class Fraccion extends Numero {
   }
 }
 
-Fraccion.desdeFractionLib = aFraction => new Fraccion(aFraction.numerator, aFraction.denominator);
+Fraccion.desdeFractionLib = aFraction => new Fraccion(aFraction._numerator, aFraction._denominator);
 Fraccion.desdeEntero = unEntero => new Fraccion(unEntero._valor, 1);
 
 export default Fraccion;

@@ -30,6 +30,6 @@
     "jest": "^24.8.0"
   },
   "dependencies": {
-    "fractional": "^1.0.0"
+    "@mathematics/fraction": "^1.0.0-beta.2"
   }
 }
